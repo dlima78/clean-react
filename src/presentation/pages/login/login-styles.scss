@@ -1,0 +1,132 @@
+@import "../../styles/colors.scss";
+
+* {
+  font-family: "Roboto", sans-serif;
+  font-size: 14px;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: $background;
+}
+
+input[type="password"],
+input[type="email"] {
+  border: 1px solid $primaryLight;
+  border-radius: 4px;
+  line-height: 40px;
+  padding: 0 40px 0 8px;
+
+  &:focus {
+    outline-color: $primaryLight;
+  }
+}
+
+button {
+  background-color: $primary;
+  border: none;
+  border-radius: 8px;
+  color: $white;
+  font-size: 16px;
+  line-height: 60px;
+
+  &:hover {
+    opacity: 0.9;
+  }
+}
+
+.login {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: space-between;
+  .header {
+    align-items: center;
+    background-color: $primary;
+    border-top: 40px solid $primaryDark;
+    display: flex;
+    flex-direction: column;
+
+    img {
+      margin-top: 40px;
+    }
+
+    h1 {
+      color: $white;
+      margin: 16px 0px 40px;
+    }
+  }
+  .form {
+    align-self: center;
+    background-color: $white;
+    border-radius: 8px;
+    box-shadow: 0px 1px 3px -1px $black;
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    padding: 40px;
+
+    h2 {
+      color: $primaryDark;
+      font-size: 20px;
+      text-align: center;
+      text-transform: uppercase;
+    }
+
+    .inputWrap {
+      align-items: center;
+      display: flex;
+      flex-direction: row;
+      margin-top: 16px;
+      position: relative;
+
+      input {
+        flex-grow: 1;
+      }
+
+      .status {
+        cursor: help;
+        font-size: 12px;
+        position: absolute;
+        right: 8px;
+      }
+    }
+
+    .submit {
+      margin-top: 32px;
+    }
+
+    .link {
+      color: $primary;
+      cursor: pointer;
+      margin-top: 16px;
+      text-align: center;
+      text-transform: lowercase;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    .errorWrap {
+      align-items: center;
+      display: flex;
+      flex-direction: column;
+
+      .spinner {
+        margin-top: 30px;
+      }
+
+      .error {
+        color: $primaryLight;
+        margin-top: 30px;
+      }
+    }
+  }
+  .footer {
+    background-color: $primary;
+    height: 48px;
+  }
+}
