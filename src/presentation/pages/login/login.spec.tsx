@@ -1,18 +1,7 @@
 import React from 'react'
 import { render, RenderResult, fireEvent, cleanup } from '@testing-library/react'
 import Login from './login'
-import { Validation } from '@/presentation/protocols'
-
-class ValidationSpy implements Validation {
-  fieldName: string
-  fieldValue: string
-  errorMessage: string
-  validate (fieldName: string, fieldValue: string): string {
-    this.fieldName = fieldName
-    this.fieldValue = fieldValue
-    return this.errorMessage
-  }
-}
+import { ValidationSpy } from '@/presentation/test'
 
 type SutTypes = {
   sut: RenderResult
