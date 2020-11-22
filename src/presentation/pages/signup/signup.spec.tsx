@@ -3,8 +3,7 @@ import faker from 'faker'
 import {
   RenderResult,
   render,
-  cleanup,
-  fireEvent
+  cleanup
 } from '@testing-library/react'
 import { AuthenticationSpy, Helper, ValidationStub } from '@/presentation/test'
 import Signup from './signup'
@@ -34,15 +33,6 @@ const makeSut = (params?: SutParams): SutTypes => {
   }
 }
 
-const populateField = (
-  sut: RenderResult,
-  fieldName: string,
-  value = faker.random.word()
-): void => {
-  const input = sut.getByTestId(fieldName)
-  fireEvent.input(input, { target: { value } })
-}
-
 describe('Signup component', () => {
   afterEach(cleanup)
   test('should start with initial state ', () => {
@@ -59,7 +49,7 @@ describe('Signup component', () => {
   test('should show name error if Validation fails', () => {
     const validationError = faker.random.words()
     const { sut } = makeSut({ validationError })
-    populateField(sut, 'name')
+    Helper.populateField(sut, 'name')
     Helper.testStatusForField(sut, 'name', validationError)
   })
 })
