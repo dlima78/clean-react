@@ -1,9 +1,15 @@
 import React from 'react'
+import faker from 'faker'
 import { Router } from 'react-router-dom'
 import { createMemoryHistory } from 'history'
-import faker from 'faker'
 import { Login } from '@/presentation/pages'
-import { render, RenderResult, fireEvent, cleanup, waitFor } from '@testing-library/react'
+import {
+  render,
+  RenderResult,
+  fireEvent,
+  cleanup,
+  waitFor
+} from '@testing-library/react'
 import {
   AuthenticationSpy,
   ValidationStub,
@@ -25,10 +31,10 @@ type SutParams = {
 const history = createMemoryHistory({ initialEntries: ['/login'] })
 const makeSut = (params?: SutParams): SutTypes => {
   const validationStub = new ValidationStub()
+  validationStub.errorMessage = params?.validationError
   const authenticationSpy = new AuthenticationSpy()
   const saveAccessTokenMock = new SaveAccessTokenMock()
 
-  validationStub.errorMessage = params?.validationError
   const sut = render(
     <Router history={history}>
       <Login
