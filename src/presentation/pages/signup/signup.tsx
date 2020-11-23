@@ -100,7 +100,7 @@ const Signup: React.FC<Props> = ({ validation, addAccount, saveAccessToken }: Pr
             name="passwordConfirmation"
             placeholder="Repita sua senha"
           />
-          <SubmitButton text='Cadastror' />
+          <SubmitButton text='Cadastrar' />
           <Link to='/login' data-testid='login' replace className={Styles.link}>Fazer login</Link>
           <FormStatus />
         </form>
