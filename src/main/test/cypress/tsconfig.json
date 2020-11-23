@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
-    "noEmit": false
+    "noEmit": false,
+    "esModuleInterop": true
   },
   "include": [
     "../../../../node_modules/cypress",
