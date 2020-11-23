@@ -5,7 +5,7 @@ import { MinLengthValidation } from './min-length-validation'
 const makeSut = (field: string): MinLengthValidation => new MinLengthValidation(field, 5)
 
 describe('MinLengthValidation', () => {
-  test('should return error if value is invalid', () => {
+  test('Should return error if value is invalid', () => {
     const field = faker.database.column()
     const sut = makeSut(field)
     const error = sut.validate({ [field]: faker.random.alphaNumeric(4) })
@@ -21,7 +21,7 @@ describe('MinLengthValidation', () => {
 
   test('should return falsy if field does not exist in schema', () => {
     const sut = makeSut(faker.database.column())
-    const error = sut.validate({ [faker.database.column()]: faker.random.alphaNumeric(4) })
+    const error = sut.validate({ [faker.database.column()]: faker.random.alphaNumeric(5) })
     expect(error).toBeFalsy()
   })
 })
