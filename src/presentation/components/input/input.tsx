@@ -9,25 +9,27 @@ const Input: React.FC<Props> = (props: Props) => {
   const error = state[`${props.name}Error`]
   const inputRef = useRef<HTMLInputElement>()
   return (
-    <div className={Styles.inputWrap}>
+    <div
+      data-testid={`${props.name}-wrap`}
+      className={Styles.inputWrap}
+      data-status={error ? 'invalid' : 'valid'}
+    >
       <input
         {...props}
+        title={error}
         ref={inputRef}
         placeholder=' '
         onChange={e => setState({ ...state, [e.target.name]: e.target.value })}
         data-testid={props.name}
         autoComplete='off'
       />
-      <label onClick={() => { inputRef.current.focus() }} >
+      <label
+        data-testid={`${props.name}-label`}
+        title={error}
+        onClick={() => { inputRef.current.focus() }}
+      >
         {props.placeholder}
       </label>
-      <span
-        data-testid={`${props.name}-status`}
-        title={error || 'Tudo Certo!'}
-        className={Styles.status}
-      >
-        {error ? '🔴' : '🟢'}
-      </span>
     </div>
   )
 }

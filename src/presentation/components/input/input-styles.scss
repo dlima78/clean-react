@@ -5,8 +5,24 @@
   margin-top: 40px;
   position: relative;
 
+  &[data-status="valid"] {
+    border-bottom-color: $valid;
+
+    &::after {
+      background-color: $valid;
+    }
+  }
+
+  &[data-status="invalid"] {
+    border-bottom-color: $invalid;
+
+    &::after {
+      background-color: $invalid;
+    }
+  }
+
   &::after {
-    background-color: $primaryLight;
+    background-color: $disabledColor;
     bottom: -2px;
     content: "";
     height: 2px;
@@ -15,7 +31,7 @@
     width: 100%;
     transform-origin: 0%;
     transform: scaleX(0);
-    transition: transform 500ms ease;
+    transition: transform 400ms ease;
   }
 
   &:focus-within {
@@ -47,7 +63,7 @@
     position: absolute;
     transform: translateY(0);
     transform-origin: 0%;
-    transition: transform 500ms ease;
+    transition: transform 400ms ease;
   }
 
   .status {
