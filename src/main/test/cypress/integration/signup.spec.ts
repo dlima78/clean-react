@@ -1,5 +1,8 @@
 import * as FormHelper from '../support/form-helper'
+import * as Http from '../support/signup-mocks'
 import faker from 'faker'
+
+const baseUrl: string = Cypress.config().baseUrl
 
 describe('Signup', () => {
   beforeEach(() => {
@@ -39,5 +42,17 @@ describe('Signup', () => {
     FormHelper.testInputStatus('passwordConfirmation')
     cy.getByTestId('submit').should('not.have.attr', 'disabled')
     cy.getByTestId('error-wrap').should('not.have.descendants')
+  })
+
+  it('should present EmailInUseError on 403', () => {
+    Http.mockEmailInUseError()
+    cy.getByTestId('name').type(faker.name.findName())
+    cy.getByTestId('email').type(faker.internet.email())
+    const password = faker.random.alphaNumeric(5)
+    cy.getByTestId('password').type(password)
+    cy.getByTestId('passwordConfirmation').type(password)
+    cy.getByTestId('submit').click()
+    FormHelper.testMainError('Email já está em uso')
+    cy.url().should('eq', `${baseUrl}/signup`)
   })
 })

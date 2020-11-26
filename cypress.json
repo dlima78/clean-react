@@ -1,4 +1,7 @@
 {
+  "env": {
+    "CYPRESS_CACHE_FOLDER": "~/.cache/Cypress"
+  },
   "baseUrl": "http://localhost:8080",
   "fixturesFolder": false,
   "supportFile": "src/main/test/cypress/support/index.js",
