@@ -55,4 +55,16 @@ describe('Signup', () => {
     FormHelper.testMainError('Email já está em uso')
     cy.url().should('eq', `${baseUrl}/signup`)
   })
+
+  it('should present UnexpectedError on default error cases', () => {
+    Http.mockUnexpectedError()
+    cy.getByTestId('name').type(faker.name.findName())
+    cy.getByTestId('email').type(faker.internet.email())
+    const password = faker.random.alphaNumeric(5)
+    cy.getByTestId('password').type(password)
+    cy.getByTestId('passwordConfirmation').type(password)
+    cy.getByTestId('submit').click()
+    FormHelper.testMainError('Algo de errodo aconteceu. Tente novamente em breve')
+    cy.url().should('eq', `${baseUrl}/signup`)
+  })
 })
